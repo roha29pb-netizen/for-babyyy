@@ -27,12 +27,14 @@
         .container {
             width: 85%; max-width: 380px;
             background: rgba(255, 255, 255, 0.98);
-            padding: 30px; border-radius: 40px;
+            padding: 25px; border-radius: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
             border: 4px solid white;
             position: relative;
             z-index: 10;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .page { display: none; animation: fadeIn 0.5s ease-out; }
@@ -43,30 +45,33 @@
 
         .btn {
             background: var(--dark-pink);
-            color: white; border: none; padding: 16px 30px;
+            color: white; border: none; padding: 14px 25px;
             border-radius: 50px; font-weight: bold; cursor: pointer;
-            width: 100%; font-size: 1.1rem; 
+            width: 100%; font-size: 1rem; 
             box-shadow: 0 4px 10px rgba(251, 113, 133, 0.4);
             -webkit-appearance: none; transition: transform 0.2s;
+            margin-bottom: 10px;
         }
 
         .btn:active { transform: scale(0.95); }
 
-        /* Games */
         .game-area { 
-            height: 150px; position: relative; margin: 20px 0; 
+            height: 140px; position: relative; margin: 15px 0; 
             background: #fff5f5; border-radius: 20px; 
             border: 2px dashed var(--dark-pink); overflow: hidden; 
         }
-        #catTarget { 
-            position: absolute; font-size: 3rem; cursor: pointer; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        #catTarget { position: absolute; font-size: 3rem; cursor: pointer; transition: all 0.4s ease; }
         
         .gallery-btn {
-            display: inline-block; margin-top: 20px; color: white; 
+            display: inline-block; margin-top: 15px; color: white; 
             text-decoration: none; font-weight: bold; background: #333;
             padding: 12px 20px; border-radius: 15px; width: 85%;
+        }
+
+        #countdown {
+            background: #fff5f5; padding: 10px; border-radius: 15px;
+            margin: 15px 0; font-weight: bold; color: var(--deep-rose);
+            border: 1px solid var(--dark-pink);
         }
 
         #musicToggle {
@@ -91,70 +96,81 @@
         <div class="page active" id="p1">
             <div style="font-size: 3rem;">😻</div>
             <h1>Hi Babyyy...</h1>
-            <p>I have a special surprise for you, but first, I want to make you a few promises.</p>
+            <p>I have a special surprise for you, but first, I have a few things to say.</p>
             <button class="btn" onclick="startExperience()">Start the Adventure</button>
         </div>
 
         <div class="page" id="p2">
             <h1>I love you for...</h1>
-            <p>Your <strong>passion and ambition</strong>. You inspire me to be better every day. Don't let this kitty get away!</p>
+            <p>Your <strong>passion and ambition</strong>. You inspire me to be better every day. Catch the kitty to see the next one!</p>
             <div class="game-area"><div id="catTarget" onclick="nextPage(3)">🐈</div></div>
         </div>
 
         <div class="page" id="p3">
             <h1>I love you for...</h1>
-            <p>How you keep getting <strong>cuter and cuter</strong>. It's actually a miracle.</p>
-            <button class="btn" onclick="nextPage(4)">I'm just naturally cute 💅</button>
+            <p>How you keep getting <strong>cuter and cuter</strong> every single day. Is it even possible to be this cute?</p>
+            <button class="btn" onclick="nextPage(4)">Yes, I'm just that cute 💅</button>
+            <button class="btn" style="background: #fda4af;" onclick="alert('WRONG! You know you are the cutest ever! Try again.')">Maybe?</button>
         </div>
 
         <div class="page" id="p4">
             <h1>I love you for...</h1>
-            <p>Being the <strong>OG papa's koochi</strong>. Forever and always.</p>
-            <p>Tap the paw 5 times:</p>
+            <p>Being the <strong>OG papa's koochi</strong>. Forever and always, my #1.</p>
+            <p>Give the paw 5 high-fives:</p>
             <div style="font-size: 4rem; cursor: pointer;" onclick="countPaws()">🐾</div>
-            <div id="pawCountDisplay" style="font-weight: bold;"><span id="pawCount">0</span> / 5</div>
+            <div style="font-weight: bold;"><span id="pawCount">0</span> / 5</div>
         </div>
 
         <div class="page" id="p5">
             <h1>I love you for...</h1>
-            <p>Being the <strong>best momma</strong> to our current and future kids. You are our everything.</p>
-            <button class="btn" onclick="nextPage(6)">Next Promise ✨</button>
+            <p>Being the <strong>best momma</strong> to our current and future kids. You are the heart of this family.</p>
+            <button class="btn" onclick="nextPage(6)">Wait, there's more... ✨</button>
         </div>
 
         <div class="page" id="p6">
             <h1>I Promise...</h1>
-            <p>To forever keep making our lives interesting. No boring days with us, Babyyy!</p>
-            <button class="btn" onclick="nextPage(7)">I believe you ❤️</button>
+            <p>To forever keep making our lives interesting. Do you agree to a lifetime of fun?</p>
+            <button class="btn" onclick="nextPage(7)">I Accept! ❤️</button>
+            <button class="btn" style="background: #fda4af;" onclick="alert('No boring lives allowed! Click Accept!')">Let me think...</button>
         </div>
 
         <div class="page" id="p7">
             <h1>I Promise...</h1>
             <p>I will keep taking you out on <strong>dates</strong>. Just you and me, always.</p>
-            <p>Pick a date type:</p>
-            <button class="btn" onclick="nextPage(8)" style="margin-bottom:10px;">Fancy Dinner 🍷</button>
-            <button class="btn" onclick="nextPage(8)">Cozy Movie Night 🍿</button>
+            <p>What's our next vibe?</p>
+            <button class="btn" onclick="nextPage(8)">Fancy & Elegant 🍷</button>
+            <button class="btn" onclick="nextPage(8)">Cozy & Cuddly 🍿</button>
         </div>
 
         <div class="page" id="p8">
             <h1>I Promise...</h1>
             <p>To ensure you always have <strong>flowers</strong> 💐</p>
-            <p style="font-size: 0.9rem;">(And separate ones for Pishi so she doesn't get kullu! 🐱)</p>
-            <button class="btn" onclick="nextPage(9)">You're the best</button>
+            <p style="font-size: 0.9rem;">(Tap the flowers to check on Pishi...)</p>
+            <div style="font-size: 3rem; cursor: pointer;" onclick="nextPage(9)">🌸🌻🌷</div>
         </div>
 
         <div class="page" id="p9">
-            <h1>I love you...</h1>
-            <p>My forever valentine. Every day is February 14th with you.</p>
-            <button class="btn" onclick="nextPage(10)">Click for the BIG surprise 🎁</button>
+            <h1>Safety First! 🐱</h1>
+            <p>And I promise to always get separate flowers for <strong>Pishi</strong> so she doesn't get <strong>kullu</strong>!</p>
+            <button class="btn" onclick="nextPage(10)">My Forever Valentine</button>
         </div>
 
         <div class="page" id="p10">
-            <div style="font-size: 3.5rem;">📸✨</div>
+            <h1>I love you...</h1>
+            <p>My forever valentine. Every day with you is a gift.</p>
+            <button class="btn" onclick="nextPage(11)">Click for the BIG surprise 🎁</button>
+        </div>
+
+        <div class="page" id="p11">
+            <div style="font-size: 3rem;">📸✨</div>
             <h1>Happy Valentine's Day!</h1>
             <p>I want the world to see you the way I do. I've booked you a professional photoshoot with:</p>
-            <h2 style="margin: 10px 0; color: #333;">The best photographer in Santorini</h2>
-            <a href="https://alefragkisphotography.com/" class="gallery-btn" target="_blank">See the Portfolio 📷</a>
-            <p style="margin-top:25px; font-weight: bold; color: var(--deep-rose);">I love you, Babyyy!</p>
+            <h2 style="margin: 5px 0; color: #333; font-size: 1.2rem;">The best photographer in Santorini</h2>
+            
+            <div id="countdown">Loading timer...</div>
+
+            <a href="https://alefragkisphotography.com/" class="gallery-btn" target="_blank">Explore the Portfolio 📷</a>
+            <p style="margin-top:20px; font-weight: bold; color: var(--deep-rose); font-size: 0.9rem;">I love you more than anything, Babyyy!</p>
         </div>
     </div>
 
@@ -168,6 +184,7 @@
             nextPage(2);
             moveCat();
             catInterval = setInterval(moveCat, 900);
+            startCountdown();
         }
 
         function nextPage(num) {
@@ -180,7 +197,7 @@
             const cat = document.getElementById('catTarget');
             if(!cat) return;
             cat.style.left = Math.floor(Math.random() * 70) + '%';
-            cat.style.top = Math.floor(Math.random() * 100) + 'px';
+            cat.style.top = Math.floor(Math.random() * 90) + 'px';
         }
 
         function countPaws() {
@@ -192,6 +209,26 @@
         function toggleMusic() {
             if (music.paused) { music.play(); document.getElementById('musicToggle').innerText = '🎵'; }
             else { music.pause(); document.getElementById('musicToggle').innerText = '🔇'; }
+        }
+
+        function startCountdown() {
+            const shootDate = new Date("Feb 15, 2026 00:00:00").getTime();
+            
+            setInterval(function() {
+                const now = new Date().getTime();
+                const distance = shootDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                if (distance < 0) {
+                    document.getElementById("countdown").innerHTML = "IT'S SHOOT DAY! 📸";
+                } else {
+                    document.getElementById("countdown").innerHTML = "Get ready! Shoot in: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
         }
     </script>
 </body>
