@@ -38,8 +38,8 @@
         .page { display: none; animation: fadeIn 0.5s ease-out; }
         .page.active { display: block; }
 
-        h1 { font-size: 1.6rem; color: var(--deep-rose); margin-bottom: 15px; line-height: 1.2; }
-        p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px; }
+        h1 { font-size: 1.5rem; color: var(--deep-rose); margin-bottom: 15px; line-height: 1.2; }
+        p { font-size: 1.05rem; line-height: 1.5; margin-bottom: 20px; }
 
         .btn {
             background: var(--dark-pink);
@@ -52,15 +52,15 @@
 
         .btn:active { transform: scale(0.95); }
 
+        /* Games */
         .game-area { 
-            height: 160px; position: relative; margin: 20px 0; 
+            height: 150px; position: relative; margin: 20px 0; 
             background: #fff5f5; border-radius: 20px; 
             border: 2px dashed var(--dark-pink); overflow: hidden; 
         }
         #catTarget { 
             position: absolute; font-size: 3rem; cursor: pointer; 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            user-select: none; -webkit-user-select: none;
         }
         
         .gallery-btn {
@@ -69,68 +69,92 @@
             padding: 12px 20px; border-radius: 15px; width: 85%;
         }
 
+        #musicToggle {
+            position: fixed; bottom: 20px; right: 20px; 
+            background: white; border-radius: 50%; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; cursor: pointer;
+        }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .paw-bg { position: absolute; font-size: 2rem; opacity: 0.1; z-index: 1; }
     </style>
 </head>
 <body>
-
-    <div class="paw-bg" style="top:5%; left:5%;">🐾</div>
-    <div class="paw-bg" style="bottom:10%; right:10%;">🐾</div>
-    <div class="paw-bg" style="top:40%; right:5%;">🐾</div>
 
     <audio id="bgMusic" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
+    <div id="musicToggle" onclick="toggleMusic()">🎵</div>
+
     <div class="container">
         <div class="page active" id="p1">
             <div style="font-size: 3rem;">😻</div>
             <h1>Hi Babyyy...</h1>
-            <p>I have a special surprise for you, but first, I want to tell you a few things.</p>
+            <p>I have a special surprise for you, but first, I want to make you a few promises.</p>
             <button class="btn" onclick="startExperience()">Start the Adventure</button>
         </div>
 
         <div class="page" id="p2">
             <h1>I love you for...</h1>
-            <p>Your <strong>passion and ambition</strong>. You never stop chasing your dreams, so don't let this kitty get away!</p>
-            <div class="game-area">
-                <div id="catTarget" onclick="nextPage(3)">🐈</div>
-            </div>
+            <p>Your <strong>passion and ambition</strong>. You inspire me to be better every day. Don't let this kitty get away!</p>
+            <div class="game-area"><div id="catTarget" onclick="nextPage(3)">🐈</div></div>
         </div>
 
         <div class="page" id="p3">
             <h1>I love you for...</h1>
-            <p>How you keep getting <strong>cuter and cuter</strong> every single day. Is it even possible to be this cute?</p>
-            <button class="btn" onclick="nextPage(4)" style="margin-bottom: 10px;">No, I'm just that cute</button>
-            <button class="btn" style="background: #fda4af;" onclick="alert('Wrong! You are the cutest! Try again.')">Maybe?</button>
+            <p>How you keep getting <strong>cuter and cuter</strong>. It's actually a miracle.</p>
+            <button class="btn" onclick="nextPage(4)">I'm just naturally cute 💅</button>
         </div>
 
         <div class="page" id="p4">
             <h1>I love you for...</h1>
-            <p>Being the <strong>OG papa's koochi</strong>. Always and forever, my number one.</p>
-            <p>Give the paw 5 high-fives:</p>
-            <div style="font-size: 4rem; cursor: pointer; margin: 10px 0;" onclick="countPaws()">🐾</div>
-            <div style="font-weight: bold; color: var(--dark-pink);"><span id="pawCount">0</span> / 5</div>
+            <p>Being the <strong>OG papa's koochi</strong>. Forever and always.</p>
+            <p>Tap the paw 5 times:</p>
+            <div style="font-size: 4rem; cursor: pointer;" onclick="countPaws()">🐾</div>
+            <div id="pawCountDisplay" style="font-weight: bold;"><span id="pawCount">0</span> / 5</div>
         </div>
 
         <div class="page" id="p5">
             <h1>I love you for...</h1>
-            <p>Being the <strong>best momma</strong> to our current and future kids. You are the heart of our home.</p>
-            <button class="btn" onclick="nextPage(6)">Unlock the Gift 🎁</button>
+            <p>Being the <strong>best momma</strong> to our current and future kids. You are our everything.</p>
+            <button class="btn" onclick="nextPage(6)">Next Promise ✨</button>
         </div>
 
         <div class="page" id="p6">
-            <div style="font-size: 3.5rem; margin-bottom: 10px;">📸✨</div>
+            <h1>I Promise...</h1>
+            <p>To forever keep making our lives interesting. No boring days with us, Babyyy!</p>
+            <button class="btn" onclick="nextPage(7)">I believe you ❤️</button>
+        </div>
+
+        <div class="page" id="p7">
+            <h1>I Promise...</h1>
+            <p>I will keep taking you out on <strong>dates</strong>. Just you and me, always.</p>
+            <p>Pick a date type:</p>
+            <button class="btn" onclick="nextPage(8)" style="margin-bottom:10px;">Fancy Dinner 🍷</button>
+            <button class="btn" onclick="nextPage(8)">Cozy Movie Night 🍿</button>
+        </div>
+
+        <div class="page" id="p8">
+            <h1>I Promise...</h1>
+            <p>To ensure you always have <strong>flowers</strong> 💐</p>
+            <p style="font-size: 0.9rem;">(And separate ones for Pishi so she doesn't get kullu! 🐱)</p>
+            <button class="btn" onclick="nextPage(9)">You're the best</button>
+        </div>
+
+        <div class="page" id="p9">
+            <h1>I love you...</h1>
+            <p>My forever valentine. Every day is February 14th with you.</p>
+            <button class="btn" onclick="nextPage(10)">Click for the BIG surprise 🎁</button>
+        </div>
+
+        <div class="page" id="p10">
+            <div style="font-size: 3.5rem;">📸✨</div>
             <h1>Happy Valentine's Day!</h1>
-            <p>I want you to see yourself the way I do. I've booked you a professional photoshoot with:</p>
+            <p>I want the world to see you the way I do. I've booked you a professional photoshoot with:</p>
             <h2 style="margin: 10px 0; color: #333;">The best photographer in Santorini</h2>
-            
-            <a href="https://alefragkisphotography.com/" class="gallery-btn" target="_blank">
-                See what's waiting for you! 📷
-            </a>
-            
-            <p style="margin-top:25px; font-weight: bold; color: var(--deep-rose);">I love you more than anything, Babyyy!</p>
+            <a href="https://alefragkisphotography.com/" class="gallery-btn" target="_blank">See the Portfolio 📷</a>
+            <p style="margin-top:25px; font-weight: bold; color: var(--deep-rose);">I love you, Babyyy!</p>
         </div>
     </div>
 
@@ -155,16 +179,19 @@
         function moveCat() {
             const cat = document.getElementById('catTarget');
             if(!cat) return;
-            const x = Math.floor(Math.random() * 70);
-            const y = Math.floor(Math.random() * 100);
-            cat.style.left = x + '%';
-            cat.style.top = y + 'px';
+            cat.style.left = Math.floor(Math.random() * 70) + '%';
+            cat.style.top = Math.floor(Math.random() * 100) + 'px';
         }
 
         function countPaws() {
             pawCounter++;
             document.getElementById('pawCount').innerText = pawCounter;
             if(pawCounter >= 5) nextPage(5);
+        }
+
+        function toggleMusic() {
+            if (music.paused) { music.play(); document.getElementById('musicToggle').innerText = '🎵'; }
+            else { music.pause(); document.getElementById('musicToggle').innerText = '🔇'; }
         }
     </script>
 </body>
